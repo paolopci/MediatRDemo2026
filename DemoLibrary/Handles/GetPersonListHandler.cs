@@ -14,9 +14,9 @@ namespace DemoLibrary.Handles
             _data = data;
         }
 
-        public Task<List<PersonModel>> Handle(GetPersonListQuery request, CancellationToken cancellationToken)
+        public async Task<List<PersonModel>> Handle(GetPersonListQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_data.GetPeople());
+            return await Task.FromResult(_data.GetPeople());
         }
     }
 }

@@ -21,6 +21,15 @@ namespace DemoLibrary.DataAccess
             return people;
         }
 
+        public PersonModel GetPersonById(int id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            return people.FirstOrDefault(p => p.Id == id);
+        }
+
         public PersonModel InsertPerson(string firstName, string lastName)
         {
             PersonModel p = new() { FirstName = firstName, LastName = lastName };
