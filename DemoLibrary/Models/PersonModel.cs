@@ -1,4 +1,4 @@
-﻿namespace BlazorUI.Models
+﻿namespace DemoLibrary.Models
 {
     public class PersonModel
     {

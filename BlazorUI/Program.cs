@@ -1,10 +1,14 @@
 using BlazorUI.Components;
+using DemoLibrary.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<IDemoDataAccess, DemoDataAccess>();
+
 
 var app = builder.Build();
 
