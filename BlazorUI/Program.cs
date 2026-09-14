@@ -7,7 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Qui Singleton ha senso perché DemoDataAccess contiene direttamente i dati in memoria,
+// simulando un piccolo database condiviso.
+// Singleton: Una sola istanza per tutta l’applicazione: tutti gli utenti accedono alla stessa lista.
 builder.Services.AddSingleton<IDemoDataAccess, DemoDataAccess>();
+builder.Services.AddMediatR(cfg=>
+    cfg.RegisterServicesFromAssemblies(typeof(DemoDataAccess).Assembly));
 
 
 var app = builder.Build();
