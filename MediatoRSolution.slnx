@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="BlazorUI/BlazorUI.csproj" />
+  <Project Path="DemoApi/DemoApi.csproj" Id="a61cd05c-6305-4820-80b7-1187c3e7b5e7" />
   <Project Path="DemoLibrary/DemoLibrary.csproj" />
 </Solution>
