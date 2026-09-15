@@ -1,6 +1,8 @@
-﻿namespace DemoLibrary.Models
+﻿using MediatR;
+
+namespace DemoLibrary.Models
 {
-    public class PersonModel
+    public class PersonModel : IRequest<PersonModel>
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

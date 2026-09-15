@@ -37,5 +37,28 @@ namespace DemoLibrary.DataAccess
             people.Add(p);
             return p;
         }
+
+        public PersonModel UpdatePerson(int id,string firstName, string lastName)
+        {
+            PersonModel p = people.FirstOrDefault(people => people.Id == id);
+            if (p != null)
+            {
+                p.FirstName = firstName;
+                p.LastName = lastName;
+            }
+            
+            return p;
+        }
+
+        public PersonModel? DeletePerson(int id)
+        {
+            PersonModel p = people.FirstOrDefault(p => p.Id == id);
+            if (p != null)
+            {
+                people.Remove(p);
+            }
+
+            return p;
+        }
     }
 }

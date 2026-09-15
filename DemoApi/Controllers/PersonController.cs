@@ -1,4 +1,5 @@
-﻿using DemoLibrary.Handles;
+﻿using DemoLibrary.Commands;
+using DemoLibrary.Handles;
 using DemoLibrary.Models;
 using DemoLibrary.Queries;
 using MediatR;
@@ -15,6 +16,7 @@ namespace DemoApi.Controllers
 
         private readonly IMediator _mediator;
 
+        // Constructor injected IMediator instance
         public PersonController(IMediator mediator)
         {
             _mediator = mediator;
@@ -36,14 +38,23 @@ namespace DemoApi.Controllers
 
         // POST api/<PersonController>
         [HttpPost]
-        public void Post([FromBody] PersonModel newPerson)
+        public async  Task<PersonModel> Post([FromBody] PersonModel newPerson)
         {
-            PersonModel p = new()
-            {
-                Id = newPerson.Id,
-                FirstName = newPerson.FirstName,
-                LastName = newPerson.LastName
-            };
+            return await _mediator.Send(new InsertPersonCommand(newPerson.FirstName, newPerson.LastName));
+        }
+
+        // PUT api/<PersonController>/5
+        [HttpPut("{id}")]
+        public async Task<PersonModel> Put(int id, string firstName, string lastName)
+        {
+            return await _mediator.Send(new UpdatePersonCommandClass(id, firstName, lastName));
+        }
+
+        // DELETE api/<PersonController>/5
+        [HttpDelete("{id}")]
+        public async Task<PersonModel> Delete(int id)
+        {
+            return await _mediator.Send(new DeletePersonCommandClass(id));
         }
     }
 }
